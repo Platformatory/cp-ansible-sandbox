@@ -1,6 +1,6 @@
 # cp-ansible-sandbox
 
-docker-compose environment to run cp-ansible in a docker environment with systemd and ssh for the inventory nodes
+podman-compose environment to run cp-ansible in a podman environment with systemd and ssh for the inventory nodes
 
 ## Getting Started
 
@@ -8,13 +8,13 @@ docker-compose environment to run cp-ansible in a docker environment with system
 # This is run only once after cloning the repo
 git submodule update --init --recursive
 
-docker compose up -d
+podman-compose up -d
 ```
 
 ### Verify if the containers are up
 
 ```
-docker compose ps -a
+podman-compose ps
 ```
 ### Setup SSH keys on all containers
 
@@ -25,7 +25,7 @@ docker compose ps -a
 ### Access the ansible control node
 
 ```sh
-docker compos exec -it ansible-control bash
+podman exec -it ansible-control bash
 
 # Inside the ansible control node, verify ssh connectivity with other nodes
 ssh root@zookeeper1
@@ -60,7 +60,7 @@ Port 9021 is exposed locally as 9021 for the `control-center` container. If cont
 ### Verifying health of the cp-ansible cluster
 
 ```sh
-docker compose exec -it kafka1 bash
+podman exec -it kafka1 bash
 
 # Once inside the container, you can run the Kafka CLIs to interact with the cluster
 ```
@@ -74,5 +74,5 @@ git submodule update --recursive
 ### Destroy the environment
 
 ```sh
-docker compose down -v
+podman-compose down -v
 ```

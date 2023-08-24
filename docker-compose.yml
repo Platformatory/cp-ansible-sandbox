@@ -5,6 +5,7 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
+    container_name: ansible-control
     hostname: ansible-control
     volumes:
       - ./cp-ansible:/ansible/ansible_collections/confluent/platform:rw
@@ -22,6 +23,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: zookeeper1
+    container_name: zookeeper1
     privileged: true
     cap_add:
       - ALL
@@ -42,6 +44,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: zookeeper2
+    container_name: zookeeper2
     privileged: true
     cap_add:
       - ALL
@@ -61,6 +64,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: zookeeper3
+    container_name: zookeeper3
     privileged: true
     cap_add:
       - ALL
@@ -81,6 +85,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: kafka1
+    container_name: kafka1
     privileged: true
     cap_add:
       - ALL
@@ -101,6 +106,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: kafka2
+    container_name: kafka2
     privileged: true
     cap_add:
       - ALL
@@ -120,6 +126,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: kafka3
+    container_name: kafka3
     privileged: true
     cap_add:
       - ALL
@@ -140,6 +147,7 @@ services:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
     hostname: control-center
+    container_name: control-center
     privileged: true
     cap_add:
       - ALL
