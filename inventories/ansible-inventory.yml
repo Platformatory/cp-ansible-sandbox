@@ -120,8 +120,8 @@ zookeeper:
 #    zookeeper_quorum_authentication_type: none
   hosts:
     zookeeper1:
-    zookeeper2:
-    zookeeper3:
+    # zookeeper2:
+    # zookeeper3:
 kafka_broker:
   vars:
     ssl_enabled: true
@@ -158,8 +158,8 @@ kafka_broker:
       provider: auto
   hosts:
     kafka1:
-    kafka2:
-    kafka3:
+    # kafka2:
+    # kafka3:
 schema_registry:
   hosts:
     schema-registry:
