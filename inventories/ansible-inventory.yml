@@ -11,6 +11,7 @@ all:
 #    zookeeper.connection.timeout.ms=60000
 
     #ssl_custom_certs: true
+    ssl_enabled: true
     ssl_ca_cert_filepath: "/ansible/inventories/ca.crt"
     ssl_signed_cert_filepath: "/ansible/inventories/kafka_broker.crt"
     ssl_key_filepath: "/ansible/inventories/kafka_broker.key"
@@ -124,7 +125,6 @@ zookeeper:
     # zookeeper3:
 kafka_broker:
   vars:
-    ssl_enabled: true
     ssl_mutual_auth_enabled: true
     kafka_broker_custom_properties:
       listener.name.client.plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required;
