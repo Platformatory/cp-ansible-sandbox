@@ -46,8 +46,8 @@ all:
     mds_super_user_password: mds
     kafka_broker_ldap_user: mds
     kafka_broker_ldap_password: mds
-    kafka_broker_ldap_user: kafka_broker
-    kafka_broker_ldap_password: kafka_broker
+    #kafka_broker_ldap_user: kafka_broker
+    #kafka_broker_ldap_password: kafka_broker
     schema_registry_ldap_user: schemaregistryUser
     schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
