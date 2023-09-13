@@ -12,9 +12,9 @@ all:
 
     #ssl_custom_certs: true
     ssl_enabled: true
-    ssl_ca_cert_filepath: "/ansible/inventories/ca.crt"
-    ssl_signed_cert_filepath: "/ansible/inventories/kafka_broker.crt"
-    ssl_key_filepath: "/ansible/inventories/kafka_broker.key"
+    ssl_ca_cert_filepath: "/ansible/certs/ca.crt"
+    ssl_signed_cert_filepath: "/ansible/certs/kafka_broker.crt"
+    ssl_key_filepath: "/ansible/certs/kafka_broker.key"
     ssl_key_password: "keystore"
     regenerate_keystore_and_truststore: true
     kafka_broker_schema_validation_enabled: true
