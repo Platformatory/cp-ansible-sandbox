@@ -160,9 +160,11 @@ kafka_broker:
     kafka1:
     # kafka2:
     # kafka3:
-schema_registry:
-  hosts:
-    schema-registry:
+# schema_registry:
+#   vars:
+#     ssl_enabled: false
+#   hosts:
+#     schema-registry:
 control_center:
   hosts:
     control-center:
