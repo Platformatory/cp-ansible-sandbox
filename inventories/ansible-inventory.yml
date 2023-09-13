@@ -30,14 +30,14 @@ all:
         name: INTERNAL
         port: 9092
         ssl_enabled: true
-        ssl_mutual_auth_enabled: true
+        ssl_mutual_auth_enabled: false
         sasl_protocol: oauthbearer
       #   ## internal listener settings as desired
       client:
         name: CLIENT
         port: 9093
         ssl_enabled: true
-        ssl_mutual_auth_enabled: true
+        ssl_mutual_auth_enabled: false
         sasl_protocol: plain
     jmxexporter_enabled: true
     rbac_enabled: true
