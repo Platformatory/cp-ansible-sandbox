@@ -4,7 +4,7 @@ all:
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
-    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+    ansible_ssh_private_key_file: /var/jenkins_home/.ssh/id_rsa
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
@@ -19,25 +19,25 @@ all:
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      # broker:
-      #   name: BROKER
-      #   port: 9091
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: none
+      broker:
+        name: BROKER
+        port: 9091
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: true
+        sasl_protocol: none
       #   ## broker listener settings as desired
-      # internal:
-      #   name: INTERNAL
-      #   port: 9092
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: false
-      #   sasl_protocol: oauthbearer
+      internal:
+        name: INTERNAL
+        port: 9092
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: oauthbearer
       #   ## internal listener settings as desired
       client:
         name: CLIENT
         port: 9093
         ssl_enabled: true
-        ssl_mutual_auth_enabled: false
+        ssl_mutual_auth_enabled: true
         sasl_protocol: plain
 
     jmxexporter_enabled: true
@@ -78,16 +78,16 @@ all:
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
-      offsets.topic.replication.factor: 3
+      offsets.topic.replication.factor: 1
       confluent.balancer.enable: true
-      # ssl.endpoint.identification.algorithm: 
-      # zookeeper.ssl.endpoint.identification.algorithm: 
-      # kafka.rest.client.ssl.endpoint.identification.algorithm: 
-      # confluent.ssl.endpoint.identification.algorithm: 
-      # confluent.metrics.reporter.ssl.endpoint.identification.algorithm: 
-      # confluent.metadata.server.ssl.endpoint.identification.algorithm: 
-      # kafka.rest.confluent.metadata.ssl.endpoint.identification.algorithm: 
-      # listener.name.broker.ssl.endpoint.identification.algorithm: 
+      ssl.endpoint.identification.algorithm: 
+      zookeeper.ssl.endpoint.identification.algorithm: 
+      kafka.rest.client.ssl.endpoint.identification.algorithm: 
+      confluent.ssl.endpoint.identification.algorithm: 
+      confluent.metrics.reporter.ssl.endpoint.identification.algorithm: 
+      confluent.metadata.server.ssl.endpoint.identification.algorithm: 
+      kafka.rest.confluent.metadata.ssl.endpoint.identification.algorithm: 
+      listener.name.broker.ssl.endpoint.identification.algorithm: 
     #   confluent.license: "{{ confluent_license }}"
     # schema_registry_custom_properties:
     #   confluent.metadata.ssl.endpoint.identification.algorithm: 
@@ -122,8 +122,8 @@ all:
 zookeeper:
   hosts:
     zookeeper1:
-    zookeeper2:
-    zookeeper3:
+ #   zookeeper2:
+ #   zookeeper3:
 
 kafka_broker:
   vars:
@@ -132,9 +132,9 @@ kafka_broker:
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
       # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
       # ldap.ssl.truststore.password: my-truststore-password
@@ -156,12 +156,12 @@ kafka_broker:
       ldap.search.page.size: 1000
   hosts:
     kafka1:
-    kafka2:
-    kafka3:
+  #  kafka2:
+  #  kafka3:
 
-schema_registry:
-  hosts:
-    schema-registry:
+#schema_registry:
+#  hosts:
+#    schema-registry:
 
 control_center:
   hosts:
