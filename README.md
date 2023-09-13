@@ -5,6 +5,11 @@ docker-compose environment to run cp-ansible in a docker environment with system
 ## Getting Started
 
 ```sh
+# Clone using SSH
+git clone git@github.com:Platformatory/cp-ansible-sandbox.git
+```
+
+```sh
 # This is run only once after cloning the repo
 git submodule update --init --recursive
 

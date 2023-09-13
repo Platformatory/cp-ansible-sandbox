@@ -161,8 +161,11 @@ kafka_broker:
     # kafka2:
     # kafka3:
 # schema_registry:
+<<<<<<< HEAD
 #   vars:
 #     ssl_enabled: false
+=======
+>>>>>>> origin/shiva
 #   hosts:
 #     schema-registry:
 control_center:
