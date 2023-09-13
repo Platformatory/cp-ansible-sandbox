@@ -62,8 +62,8 @@ all:
       - User:superUser
       - User:alice
     create_mds_certs: true
-    # token_services_public_pem_file: /home/ashwin/Training/certs/public.pem
-    # token_services_private_pem_file: /home/ashwin/Training/certs/private.pem
+    token_services_public_pem_file: /home/ashwin/Training/certs/public.pem
+    token_services_private_pem_file: /home/ashwin/Training/certs/private.pem
     ## confluent_license: <license-token>
     ## Set Component custom properties if any
     zookeeper_custom_properties:
