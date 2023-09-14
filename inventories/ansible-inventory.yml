@@ -26,8 +26,8 @@ all:
     #    ssl_mutual_auth_enabled: true
     #    sasl_protocol: none
       #   ## broker listener settings as desired
-     internal:
-    #    name: INTERNAL
+      internal:
+        name: INTERNAL
         port: 9092
         ssl_enabled: true
         ssl_mutual_auth_enabled: false
