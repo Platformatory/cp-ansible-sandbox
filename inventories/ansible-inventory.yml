@@ -37,7 +37,7 @@ all:
         name: CLIENT
         port: 9093
         ssl_enabled: true
-        ssl_mutual_auth_enabled: true
+        ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
     jmxexporter_enabled: true
