@@ -19,19 +19,19 @@ all:
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      broker:
-        name: BROKER
-        port: 9091
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: none
+    #  broker:
+    #    name: BROKER
+    #    port: 9091
+    #    ssl_enabled: true
+    #    ssl_mutual_auth_enabled: true
+    #    sasl_protocol: none
       #   ## broker listener settings as desired
-      internal:
-        name: INTERNAL
-        port: 9092
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: false
-        sasl_protocol: oauthbearer
+    #  internal:
+    #    name: INTERNAL
+        # port: 9092
+        # ssl_enabled: true
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: oauthbearer
       #   ## internal listener settings as desired
       client:
         name: CLIENT
