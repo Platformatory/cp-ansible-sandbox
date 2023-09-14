@@ -10,7 +10,7 @@ all:
 #    zookeeper_client_port: 2181
 #    zookeeper.connection.timeout.ms=60000
 
-    #ssl_custom_certs: true
+    # ssl_custom_certs: true
     #ssl_enabled: true
     #ssl_ca_cert_filepath: "/ansible/certs/ca.crt"
     #ssl_signed_cert_filepath: "/ansible/certs/kafka_broker.crt"
@@ -18,7 +18,7 @@ all:
     #ssl_key_password: "keystore"
     #regenerate_keystore_and_truststore: true
     #kafka_broker_schema_validation_enabled: true
-     kafka_broker_custom_listeners:
+    kafka_broker_custom_listeners:
       # broker:
         # name: BROKER
         # port: 9091
