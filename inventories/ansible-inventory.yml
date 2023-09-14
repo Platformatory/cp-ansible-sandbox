@@ -26,12 +26,12 @@ all:
     #    ssl_mutual_auth_enabled: true
     #    sasl_protocol: none
       #   ## broker listener settings as desired
-    #  internal:
+     internal:
     #    name: INTERNAL
-        # port: 9092
-        # ssl_enabled: true
-        # ssl_mutual_auth_enabled: false
-        # sasl_protocol: oauthbearer
+        port: 9092
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: oauthbearer
       #   ## internal listener settings as desired
       client:
         name: CLIENT
