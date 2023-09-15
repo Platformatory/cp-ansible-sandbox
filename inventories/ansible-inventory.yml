@@ -122,8 +122,8 @@ all:
 zookeeper:
   hosts:
     zookeeper1:
- #   zookeeper2:
- #   zookeeper3:
+    zookeeper2:
+    zookeeper3:
 
 kafka_broker:
   vars:
@@ -156,8 +156,8 @@ kafka_broker:
       ldap.search.page.size: 1000
   hosts:
     kafka1:
-  #  kafka2:
-  #  kafka3:
+    kafka2:
+    kafka3:
 
 #schema_registry:
 #  hosts:
