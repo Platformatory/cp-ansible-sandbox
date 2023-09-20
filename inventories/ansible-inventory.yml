@@ -136,9 +136,9 @@ zookeeper:
 kafka_broker:
   vars:
     kafka_broker_custom_properties:
-      listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
+      # listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
 
-      listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
+      # listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
