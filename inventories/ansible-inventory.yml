@@ -81,8 +81,8 @@ all:
     zookeeper_custom_properties:
       initLimit: 6
       syncLimit: 4
-      # ssl.quorum.hostnameVerification: false
-      # ssl.hostnameVerification: false
+      ssl.quorum.hostnameVerification: false
+      ssl.hostnameVerification: false
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
@@ -145,9 +145,9 @@ kafka_broker:
       # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
-      # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
-      # ldap.ssl.truststore.password: my-truststore-password
-      # ldap.java.naming.security.protocol: SSL
+      ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
+      ldap.ssl.truststore.password: my-truststore-password
+      ldap.java.naming.security.protocol: SSL
       ldap.java.naming.factory.initial: com.sun.jndi.ldap.LdapCtxFactory
       ldap.com.sun.jndi.ldap.read.timeout: 3000
       ldap.java.naming.provider.url: ldap://openldap:389
