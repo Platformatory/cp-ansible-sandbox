@@ -12,6 +12,7 @@ all:
     deployment_strategy: rolling
     kafka_broker_custom_properties:
       inter.broker.protocol.version: 3.4
+      log.message.format.version: 3.4
 
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certs/ca.crt"
