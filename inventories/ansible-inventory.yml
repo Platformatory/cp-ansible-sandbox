@@ -19,19 +19,19 @@ all:
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      broker:
-        name: BROKER
-        port: 9091
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: none
-        ## broker listener settings as desired
-      internal:
-        name: INTERNAL
-        port: 9092
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: oauthbearer
+      # broker:
+      #   name: BROKER
+      #   port: 9091
+      #   ssl_enabled: true
+      #   ssl_mutual_auth_enabled: true
+      #   sasl_protocol: none
+      #   ## broker listener settings as desired
+      # internal:
+      #   name: INTERNAL
+      #   port: 9092
+      #   ssl_enabled: true
+      #   ssl_mutual_auth_enabled: true
+      #   sasl_protocol: oauthbearer
         ## internal listener settings as desired
       client:
         name: CLIENT
@@ -56,8 +56,8 @@ all:
     mds_super_user_password: mds
     # kafka_broker_ldap_user: mds
     # kafka_broker_ldap_password: mds
-    schema_registry_ldap_user: schemaregistryUser
-    schema_registry_ldap_password: schemaregistryUser
+    # schema_registry_ldap_user: schemaregistryUser
+    # schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
     # kafka_connect_ldap_password: connectAdmin
     # ksql_ldap_user: <Your KSQL username in LDAP>
@@ -81,7 +81,7 @@ all:
     zookeeper_custom_properties:
       initLimit: 6
       syncLimit: 4
-      # ssl.quorum.hostnameVerification: false
+      ssl.quorum.hostnameVerification: false
       # ssl.hostnameVerification: false
     kafka_broker_custom_properties:
       num.io.threads: 15
@@ -136,9 +136,9 @@ zookeeper:
 kafka_broker:
   vars:
     kafka_broker_custom_properties:
-      # listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
+      listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
 
-      # listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
+      listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
