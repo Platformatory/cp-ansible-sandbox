@@ -155,17 +155,17 @@ kafka_broker:
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
       ldap.user.name.attribute: uid
-    #  ldap.user.memberof.attribute: memberOf
-    #  ldap.user.search.filter: (objectClass=inetOrgPerson)
-    #  ldap.user.search.scope: 2
-    #  ldap.search.page.size: 1000
+      ldap.user.memberof.attribute: memberOf
+      ldap.user.search.filter: (objectClass=inetOrgPerson)
+      ldap.user.search.scope: 2
+      ldap.search.page.size: 1000
       ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.group.object.class: posixGroup
       ldap.group.name.attribute: cn
       ldap.group.member.attribute: memberuid
       ldap.group.member.attribute.pattern: cn=(.*),ou=users,dc=confluentdemo,dc=io
       ldap.group.search.scope: 2
-      ldap.search.page.size: 1000
+      
   hosts:
     kafka1:
   #  kafka2:
