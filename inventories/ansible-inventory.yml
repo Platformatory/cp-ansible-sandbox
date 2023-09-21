@@ -9,30 +9,30 @@ all:
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
 
-    # ssl_custom_certs: true
-    # ssl_ca_cert_filepath: "certs/ca.crt"
-    # ssl_signed_cert_filepath: "certs/kafka.crt"
-    # ssl_key_filepath: "certs/kafka.key"
-    # ssl_key_password: ""
+    ssl_custom_certs: true
+    ssl_ca_cert_filepath: "certs/ca.crt"
+    ssl_signed_cert_filepath: "certs/kafka.crt"
+    ssl_key_filepath: "certs/kafka.key"
+    ssl_key_password: ""
     regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-    #  broker:
-    #    name: BROKER
-    #    port: 9091
-    #    ssl_enabled: true
-    #    ssl_mutual_auth_enabled: true
-    #    sasl_protocol: none
-      #   ## broker listener settings as desired
-      # internal:
-        # name: INTERNAL
-        # port: 9092
-        # ssl_enabled: true
-        # ssl_mutual_auth_enabled: false
-        # sasl_protocol: oauthbearer
-      #   ## internal listener settings as desired
+     broker:
+       name: BROKER
+       port: 9091
+       ssl_enabled: true
+       ssl_mutual_auth_enabled: true
+       sasl_protocol: none
+        ## broker listener settings as desired
+      internal:
+        name: INTERNAL
+        port: 9092
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: oauthbearer
+        ## internal listener settings as desired
       client:
         name: CLIENT
         port: 9093
@@ -123,8 +123,8 @@ all:
 zookeeper:
   hosts:
     zookeeper1:
- #   zookeeper2:
- #   zookeeper3:
+    zookeeper2:
+    zookeeper3:
 
 kafka_broker:
   vars:
@@ -174,8 +174,8 @@ kafka_broker:
       ldap.search.page.size: 1000
   hosts:
     kafka1:
-  #  kafka2:
-  #  kafka3:
+    kafka2:
+    kafka3:
 
 #schema_registry:
 #  hosts:
