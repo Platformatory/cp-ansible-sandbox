@@ -19,7 +19,7 @@ all:
     # ssl_signed_cert_filepath: "certs/kafka.crt"
     # ssl_key_filepath: "certs/kafka.key"
     # ssl_key_password: ""
-    # regenerate_keystore_and_truststore: true
+    regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
@@ -83,7 +83,7 @@ all:
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
-      offsets.topic.replication.factor: 1
+      offsets.topic.replication.factor: 3
       confluent.balancer.enable: true
     #  ssl.endpoint.identification.algorithm: 
     #  zookeeper.ssl.endpoint.identification.algorithm: 
@@ -127,8 +127,8 @@ all:
 zookeeper:
   hosts:
     zookeeper1:
-  #  zookeeper2:
-  #  zookeeper3:
+    zookeeper2:
+    zookeeper3:
 
 kafka_broker:
   vars:
@@ -168,8 +168,8 @@ kafka_broker:
       
   hosts:
     kafka1:
-  #  kafka2:
-  #  kafka3:
+    kafka2:
+    kafka3:
 
 #schema_registry:
 #  hosts:
