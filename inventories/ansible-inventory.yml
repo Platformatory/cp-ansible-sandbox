@@ -19,7 +19,7 @@ all:
     # ssl_signed_cert_filepath: "certs/kafka.crt"
     # ssl_key_filepath: "certs/kafka.key"
     # ssl_key_password: ""
-    regenerate_keystore_and_truststore: true
+    #regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
@@ -150,7 +150,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      ldap.search.mode: GROUPS
+      ldap.search.mode: UERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -159,12 +159,12 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.member.attribute: memberuid
-      ldap.group.member.attribute.pattern: cn=(.*),ou=users,dc=confluentdemo,dc=io
-      ldap.group.search.scope: 2
+      # ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      # ldap.group.object.class: posixGroup
+      # ldap.group.name.attribute: cn
+      # ldap.group.member.attribute: memberuid
+      # ldap.group.member.attribute.pattern: cn=(.*),ou=users,dc=confluentdemo,dc=io
+      # ldap.group.search.scope: 2
       
   hosts:
     kafka1:
