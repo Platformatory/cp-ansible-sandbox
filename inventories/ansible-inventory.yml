@@ -150,7 +150,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      ldap.search.mode: GROUPS
+      ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
