@@ -1,14 +1,15 @@
 ---
 all:
   vars:
+    kafka_broker_rest_proxy_enabled: true
     deployment_strategy: rolling
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
-    # ssl_enabled: true
-    # ssl_mutual_auth_enabled: true
+    ssl_enabled: true
+    ssl_mutual_auth_enabled: true
 
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certificates/ca-cert"
@@ -20,34 +21,34 @@ all:
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      # broker:
-      #   name: BROKER
-      #   port: 9091
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: none
-      #   ## broker listener settings as desired
-      # internal:
-      #   name: INTERNAL
-      #   port: 9092
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: oauthbearer
-        ## internal listener settings as desired
+      broker:
+        name: BROKER
+        port: 9091
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: true
+        sasl_protocol: none
+        ## broker listener settings as desired
+      internal:
+        name: INTERNAL
+        port: 9092
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: true
+        sasl_protocol: oauthbearer
+        # internal listener settings as desired
       client:
         name: CLIENT
-        port: 9093
-        ssl_enabled: false
+        port: 9095
+        ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
-    sasl_plain_users: 
-      admin:
-        principal: 'admin'
-        password: 'admin-secret'
-      user1:
-        principal: 'user1'
-        password: 'user1pass'
+    # sasl_plain_users: 
+    #   admin:
+    #     principal: 'admin'
+    #     password: 'admin-secret'
+    #   user1:
+    #     principal: 'user1'
+    #     password: 'user1pass'
 
     jmxexporter_enabled: true
     rbac_enabled: true
@@ -55,8 +56,8 @@ all:
     ## LDAP Users
     mds_super_user: mds
     mds_super_user_password: mds
-    # kafka_broker_ldap_user: mds
-    # kafka_broker_ldap_password: mds
+    kafka_broker_ldap_user: mds
+    kafka_broker_ldap_password: mds
     # schema_registry_ldap_user: schemaregistryUser
     # schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
@@ -120,7 +121,8 @@ all:
     # control_center_custom_properties:
     #   confluent.controlcenter.rest.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.streams.ssl.endpoint.identification.algorithm: 
-    #   confluent.metadata.ssl.endpoint.identification.algorithm: 
+    #   confluent.metadata.ssl.e      ldap.group.search.scope: 2
+      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=iondpoint.identification.algorithm: 
     #   confluent.monitoring.interceptor.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.connect.connect-cluster.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.schema.registry.schema.registry.ssl.endpoint.identification.algorithm: 
@@ -139,9 +141,9 @@ zookeeper:
 kafka_broker:
   vars:
     kafka_broker_custom_properties:
-      # listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
+      listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
 
-      # listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
+      listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
@@ -157,7 +159,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      ldap.search.mode: USERS
+      # ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -166,6 +168,16 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
+      ldap.search.mode: GROUPS
+      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      ldap.group.object.class: posixGroup
+      ldap.group.name.attribute: cn
+      ldap.group.name.attribute: memberuid
+      ldap.group.search.scope: 2
+      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+
+
+
   hosts:
     kafka1:
     kafka2:
