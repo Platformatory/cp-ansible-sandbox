@@ -9,7 +9,7 @@ all:
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
 
-    #deployment_strategy: rolling
+    deployment_strategy: rolling
     #kafka_broker_custom_properties:
      # inter.broker.protocol.version: 3.4
      # log.message.format.version: 3.4
