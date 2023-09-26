@@ -15,7 +15,7 @@ all:
     # ssl_signed_cert_filepath: "certs/kafka.crt"
     # ssl_key_filepath: "certs/kafka.key"
     # ssl_key_password: ""
-    # regenerate_keystore_and_truststore: true
+    regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
@@ -37,26 +37,26 @@ all:
       client:
         name: CLIENT
         port: 9093
-        ssl_enabled: false
+        ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
-    sasl_plain_users: 
-      admin:
-        principal: 'admin'
-        password: 'admin-secret'
-      user1:
-        principal: 'user1'
-        password: 'user1pass'
+    # sasl_plain_users: 
+    #   admin:
+    #     principal: 'admin'
+    #     password: 'admin-secret'
+    #   user1:
+    #     principal: 'user1'
+    #     password: 'user1pass'
 
     jmxexporter_enabled: true
     rbac_enabled: true
-
+    deployment_strategy: rolling
     ## LDAP Users
     mds_super_user: mds
     mds_super_user_password: mds
-    # kafka_broker_ldap_user: mds
-    # kafka_broker_ldap_password: mds
+    kafka_broker_ldap_user: mds
+    kafka_broker_ldap_password: mds
     # schema_registry_ldap_user: schemaregistryUser
     # schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
@@ -157,7 +157,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      ldap.search.mode: USERS
+      # ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -166,6 +166,15 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
+      ldap.search.mode: GROUPS
+      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      ldap.group.object.class: posixGroup
+      ldap.group.name.attribute: cn
+      ldap.group.member.attribute: memberuid
+      ldap.group.search.scope: 2ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+
+
+
   hosts:
     kafka1:
     kafka2:
