@@ -1,14 +1,15 @@
 ---
 all:
   vars:
+    kafka_broker_rest_proxy_enabled: true
     deployment_strategy: rolling
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
-    # ssl_enabled: true
-    # ssl_mutual_auth_enabled: true
+    ssl_enabled: true
+    ssl_mutual_auth_enabled: true
 
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certificates/ca-cert"
@@ -20,24 +21,24 @@ all:
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      # broker:
-      #   name: BROKER
-      #   port: 9091
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: none
-      #   ## broker listener settings as desired
-      # internal:
-      #   name: INTERNAL
-      #   port: 9092
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: oauthbearer
-        ## internal listener settings as desired
+      broker:
+        name: BROKER
+        port: 9091
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: true
+        sasl_protocol: none
+        ## broker listener settings as desired
+      internal:
+        name: INTERNAL
+        port: 9092
+        ssl_enabled: true
+        ssl_mutual_auth_enabled: true
+        sasl_protocol: oauthbearer
+        # internal listener settings as desired
       client:
         name: CLIENT
-        port: 9093
-        ssl_enabled: false
+        port: 9095
+        ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
@@ -120,7 +121,8 @@ all:
     # control_center_custom_properties:
     #   confluent.controlcenter.rest.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.streams.ssl.endpoint.identification.algorithm: 
-    #   confluent.metadata.ssl.endpoint.identification.algorithm: 
+    #   confluent.metadata.ssl.e      ldap.group.search.scope: 2
+      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=iondpoint.identification.algorithm: 
     #   confluent.monitoring.interceptor.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.connect.connect-cluster.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.schema.registry.schema.registry.ssl.endpoint.identification.algorithm: 
@@ -170,7 +172,11 @@ kafka_broker:
       ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.group.object.class: posixGroup
       ldap.group.name.attribute: cn
+<<<<<<< HEAD
       ldap.group.member.attribute: memberuid
+=======
+      ldap.group.name.attribute: memberuid
+>>>>>>> parent of ab02c36 (Revert "test")
       ldap.group.search.scope: 2
       ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
 
