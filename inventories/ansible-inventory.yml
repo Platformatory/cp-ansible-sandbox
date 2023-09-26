@@ -1,97 +1,64 @@
 ---
 all:
   vars:
-<<<<<<< HEAD
-=======
-    kafka_broker_rest_proxy_enabled: true
     deployment_strategy: rolling
->>>>>>> parent of ab02c36 (Revert "test")
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
-    ssl_enabled: true
-    ssl_mutual_auth_enabled: true
+    # ssl_enabled: true
+    # ssl_mutual_auth_enabled: true
 
-    #    ssl_custom_certs: true
-    # ssl_ca_cert_filepath: "/var/jenkins_home/certs/ca.crt"
-    # ssl_signed_cert_filepath: "/var/jenkins_home/certs/server.crt"
-    # ssl_key_filepath: "/var/jenkins_home/certs/server.pem"
+    # ssl_custom_certs: true
+    # ssl_ca_cert_filepath: "certificates/ca-cert"
+    # ssl_signed_cert_filepath: "certs/kafka.crt"
+    # ssl_key_filepath: "certs/kafka.key"
     # ssl_key_password: ""
-    regenerate_keystore_and_truststore: true
+    # regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-<<<<<<< HEAD
-#      broker:
-#        name: BROKER
-#        port: 9093
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: none
-#      internal:
-#        name: INTERNAL
-#        port: 9094
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: oauthbearer
-      client_listener:
-=======
-      broker:
-        name: BROKER
-        port: 9091
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: none
-        ## broker listener settings as desired
-      internal:
-        name: INTERNAL
-        port: 9092
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: oauthbearer
-        # internal listener settings as desired
+      # broker:
+      #   name: BROKER
+      #   port: 9091
+      #   ssl_enabled: true
+      #   ssl_mutual_auth_enabled: true
+      #   sasl_protocol: none
+      #   ## broker listener settings as desired
+      # internal:
+      #   name: INTERNAL
+      #   port: 9092
+      #   ssl_enabled: true
+      #   ssl_mutual_auth_enabled: true
+      #   sasl_protocol: oauthbearer
+        ## internal listener settings as desired
       client:
->>>>>>> parent of ab02c36 (Revert "test")
         name: CLIENT
-        port: 9095
-        ssl_enabled: true
+        port: 9093
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
-<<<<<<< HEAD
-=======
-    # sasl_plain_users: 
-    #   admin:
-    #     principal: 'admin'
-    #     password: 'admin-secret'
-    #   user1:
-    #     principal: 'user1'
-    #     password: 'user1pass'
+    sasl_plain_users: 
+      admin:
+        principal: 'admin'
+        password: 'admin-secret'
+      user1:
+        principal: 'user1'
+        password: 'user1pass'
 
->>>>>>> parent of ab02c36 (Revert "test")
     jmxexporter_enabled: true
     rbac_enabled: true
-    
-    deployment_strategy: rolling
-    kafka_broker_custom_properties:
-      inter.broker.protocol.version: 3.5
-      log.message.format.version: 3.5
 
     ## LDAP Users
     mds_super_user: mds
     mds_super_user_password: mds
-    kafka_broker_ldap_user: mds
-    kafka_broker_ldap_password: mds
-<<<<<<< HEAD
-    #schema_registry_ldap_user: schemaregistryUser
-    #schema_registry_ldap_password: schemaregistryUser
-=======
+    # kafka_broker_ldap_user: mds
+    # kafka_broker_ldap_password: mds
     # schema_registry_ldap_user: schemaregistryUser
     # schema_registry_ldap_password: schemaregistryUser
->>>>>>> parent of ab02c36 (Revert "test")
     # kafka_connect_ldap_user: connectAdmin
     # kafka_connect_ldap_password: connectAdmin
     # ksql_ldap_user: <Your KSQL username in LDAP>
@@ -118,9 +85,11 @@ all:
       ssl.quorum.hostnameVerification: false
       # ssl.hostnameVerification: false
     kafka_broker_custom_properties:
+      inter.broker.protocol.version: 3.5
+      log.message.format.version: 3.5
       num.io.threads: 15
       offsets.topic.num.partitions: 1
-      offsets.topic.replication.factor: 3
+      offsets.topic.replication.factor: 1
       confluent.balancer.enable: true
       # ssl.endpoint.identification.algorithm: 
       # zookeeper.ssl.endpoint.identification.algorithm: 
@@ -151,8 +120,7 @@ all:
     # control_center_custom_properties:
     #   confluent.controlcenter.rest.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.streams.ssl.endpoint.identification.algorithm: 
-    #   confluent.metadata.ssl.e      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=iondpoint.identification.algorithm: 
+    #   confluent.metadata.ssl.endpoint.identification.algorithm: 
     #   confluent.monitoring.interceptor.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.connect.connect-cluster.ssl.endpoint.identification.algorithm: 
     #   confluent.controlcenter.schema.registry.schema.registry.ssl.endpoint.identification.algorithm: 
@@ -171,18 +139,14 @@ zookeeper:
 kafka_broker:
   vars:
     kafka_broker_custom_properties:
-<<<<<<< HEAD
-      listener.name.client.plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required;
-=======
-      listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
+      # listener.name.client.sasl_plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
 
->>>>>>> parent of ab02c36 (Revert "test")
-      listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
+      # listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      # listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
       # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
       # ldap.ssl.truststore.password: my-truststore-password
@@ -193,7 +157,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      # ldap.search.mode: USERS
+      ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -202,34 +166,14 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      ldap.search.mode: GROUPS
-<<<<<<< HEAD
-      # Required for group-based search
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.member.attribute: memberuid
-      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
-=======
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.name.attribute: memberuid
-      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
-
-
-
->>>>>>> parent of ab02c36 (Revert "test")
   hosts:
     kafka1:
     kafka2:
     kafka3:
 
-#schema_registry:
-#  hosts:
-#    schema-registry:
+# schema_registry:
+#   hosts:
+#     schema-registry:
 
 control_center:
   hosts:
