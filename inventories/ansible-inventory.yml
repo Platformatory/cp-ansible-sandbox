@@ -67,8 +67,8 @@ all:
       - User:alice
 
     create_mds_certs: true
-    # token_services_public_pem_file: /home/ashwin/Training/certs/public.pem
-    # token_services_private_pem_file: /home/ashwin/Training/certs/private.pem
+    token_services_public_pem_file: /home/platformatory/Documents/GitHub/cp-ansible-sandbox/certs/public.pem
+    token_services_private_pem_file: /home/platformatory/Documents/GitHub/cp-ansible-sandbox/certs/tokenKeypair.pem
 
     ## confluent_license: <license-token>
 
