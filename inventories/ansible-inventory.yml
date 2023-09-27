@@ -18,19 +18,19 @@ all:
 
     kafka_broker_schema_validation_enabled: true
 
-    kafka_broker_custom_listeners:
-#      broker:
-#        name: BROKER
-#        port: 9093
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: none
-#      internal:
-#        name: INTERNAL
-#        port: 9094
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: oauthbearer
+    # kafka_broker_custom_listeners:
+    #  broker:
+      #  name: BROKER
+      #  port: 9093
+      #  ssl_enabled: true
+      #  ssl_mutual_auth_enabled: true
+      #  sasl_protocol: none
+    #  internal:
+      #  name: INTERNAL
+      #  port: 9094
+      #  ssl_enabled: true
+      #  ssl_mutual_auth_enabled: true
+      #  sasl_protocol: oauthbearer
       client_listener:
         name: CLIENT
         port: 9095
@@ -135,9 +135,9 @@ kafka_broker:
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+    #  listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+    #  listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+    #  listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
       # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
       # ldap.ssl.truststore.password: my-truststore-password
