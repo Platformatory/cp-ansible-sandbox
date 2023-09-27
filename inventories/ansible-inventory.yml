@@ -34,7 +34,7 @@ all:
       client_listener:
         name: CLIENT
         port: 9095
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
