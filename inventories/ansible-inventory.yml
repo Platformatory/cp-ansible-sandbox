@@ -4,16 +4,16 @@ all:
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
-    ansible_ssh_private_key_file: /root/.ssh/id_ed25519
+    ansible_ssh_private_key_file: /var/jenkins_home/.ssh/id_rsa
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
 
-    #    ssl_custom_certs: true
-    ssl_ca_cert_filepath: "/var/jenkins_home/certs/ca.crt"
-    ssl_signed_cert_filepath: "/var/jenkins_home/certs/server.crt"
-    ssl_key_filepath: "/var/jenkins_home/certs/server.pem"
-    ssl_key_password: ""
+    # ssl_custom_certs: true
+    #ssl_ca_cert_filepath: "/var/ssl/private/ca.crt"
+    #ssl_signed_cert_filepath: "/var/ssl/private/kafka_broker.crt"
+    # ssl_key_filepath: "/var/ssl/private/public.pem"
+    # ssl_key_password: ""
     regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
@@ -42,9 +42,9 @@ all:
     rbac_enabled: true
     
     deployment_strategy: rolling
-    kafka_broker_custom_properties:
-      inter.broker.protocol.version: 3.5
-      log.message.format.version: 3.5
+    #kafka_broker_custom_properties:
+    #  inter.broker.protocol.version: 3.5
+    #  log.message.format.version: 3.5
 
     ## LDAP Users
     mds_super_user: mds
@@ -148,7 +148,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      # ldap.search.mode: USERS
+      ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -157,14 +157,14 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      ldap.search.mode: GROUPS
+      #ldap.search.mode: GROUPS
       # Required for group-based search
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.member.attribute: memberuid
-      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+      #ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      #ldap.group.object.class: posixGroup
+      #ldap.group.name.attribute: cn
+      #ldap.group.member.attribute: memberuid
+      #ldap.group.search.scope: 2
+      # ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
   hosts:
     kafka1:
     kafka2:
