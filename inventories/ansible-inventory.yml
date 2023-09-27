@@ -4,34 +4,41 @@ all:
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
-    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+    ansible_ssh_private_key_file: /var/jenkins_home/.ssh/id_rsa
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
 
+    deployment_strategy: rolling
+    #kafka_broker_custom_properties:
+     # inter.broker.protocol.version: 3.4
+     # log.message.format.version: 3.4
+
     # ssl_custom_certs: true
-    ssl_ca_cert_filepath: "/var/ssl/private/ca.crt"
-    ssl_signed_cert_filepath: "/var/ssl/private/kafka_broker.crt"
-    ssl_key_filepath: "/var/ssl/private/public.pem"
-    ssl_key_password: ""
-    regenerate_keystore_and_truststore: true
+    # ssl_ca_cert_filepath: "certs/ca.crt"
+    # ssl_signed_cert_filepath: "certs/kafka.crt"
+    # ssl_key_filepath: "certs/kafka.key"
+    # ssl_key_password: ""
+    #regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-#      broker:
-#        name: BROKER
-#        port: 9093
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: none
-#      internal:
-#        name: INTERNAL
-#        port: 9094
-#        ssl_enabled: true
-#        ssl_mutual_auth_enabled: true
-#        sasl_protocol: oauthbearer
-      client_listener:
+    #  broker:
+    #    name: BROKER
+    #    port: 9091
+    #    ssl_enabled: true
+    #    ssl_mutual_auth_enabled: true
+    #    sasl_protocol: none
+      #   ## broker listener settings as desired
+    #  internal:
+    #    name: INTERNAL
+        # port: 9092
+        # ssl_enabled: true
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: oauthbearer
+      #   ## internal listener settings as desired
+      client:
         name: CLIENT
         port: 9093
         ssl_enabled: true
@@ -40,11 +47,6 @@ all:
 
     jmxexporter_enabled: true
     rbac_enabled: true
-    
-    deployment_strategy: rolling
-    #kafka_broker_custom_properties:
-    #  inter.broker.protocol.version: 3.5
-    #  log.message.format.version: 3.5
 
     ## LDAP Users
     mds_super_user: mds
@@ -83,14 +85,14 @@ all:
       offsets.topic.num.partitions: 1
       offsets.topic.replication.factor: 3
       confluent.balancer.enable: true
-      # ssl.endpoint.identification.algorithm: 
-      # zookeeper.ssl.endpoint.identification.algorithm: 
-      # kafka.rest.client.ssl.endpoint.identification.algorithm: 
-      # confluent.ssl.endpoint.identification.algorithm: 
-      # confluent.metrics.reporter.ssl.endpoint.identification.algorithm: 
-      # confluent.metadata.server.ssl.endpoint.identification.algorithm: 
-      # kafka.rest.confluent.metadata.ssl.endpoint.identification.algorithm: 
-      # listener.name.broker.ssl.endpoint.identification.algorithm: 
+    #  ssl.endpoint.identification.algorithm: 
+    #  zookeeper.ssl.endpoint.identification.algorithm: 
+    #  kafka.rest.client.ssl.endpoint.identification.algorithm: 
+    #  confluent.ssl.endpoint.identification.algorithm: 
+    #  confluent.metrics.reporter.ssl.endpoint.identification.algorithm: 
+    #  confluent.metadata.server.ssl.endpoint.identification.algorithm: 
+    #  kafka.rest.confluent.metadata.ssl.endpoint.identification.algorithm: 
+    #  listener.name.broker.ssl.endpoint.identification.algorithm: 
     #   confluent.license: "{{ confluent_license }}"
     # schema_registry_custom_properties:
     #   confluent.metadata.ssl.endpoint.identification.algorithm: 
@@ -135,9 +137,9 @@ kafka_broker:
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-#      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+     # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+     # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+     # listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
       # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
       # ldap.ssl.truststore.password: my-truststore-password
@@ -157,14 +159,13 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      #ldap.search.mode: GROUPS
-      # Required for group-based search
-      #ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      #ldap.group.object.class: posixGroup
-      #ldap.group.name.attribute: cn
-      #ldap.group.member.attribute: memberuid
-      #ldap.group.search.scope: 2
-      # ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+      # ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      # ldap.group.object.class: posixGroup
+      # ldap.group.name.attribute: cn
+      # ldap.group.member.attribute: memberuid
+      # ldap.group.member.attribute.pattern: cn=(.*),ou=users,dc=confluentdemo,dc=io
+      # ldap.group.search.scope: 2
+      
   hosts:
     kafka1:
     kafka2:
