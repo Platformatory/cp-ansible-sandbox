@@ -6,7 +6,7 @@ all:
     ansible_become: true
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
-    ssl_enabled: true
+    # ssl_enabled: true
     # ssl_mutual_auth_enabled: true
 
     # ssl_custom_certs: true
@@ -34,7 +34,7 @@ all:
       client_listener:
         name: CLIENT
         port: 9095
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
@@ -134,7 +134,7 @@ kafka_broker:
       listener.name.client.plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required;
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
-      ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      # ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
