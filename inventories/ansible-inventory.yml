@@ -41,9 +41,9 @@ all:
     jmxexporter_enabled: true
     rbac_enabled: true
     
-    deployment_strategy: rolling
-    kafka_broker_custom_properties:
-      inter.broker.protocol.version: 3.3
+    # deployment_strategy: rolling
+    # kafka_broker_custom_properties:
+    #   inter.broker.protocol.version: 3.3
       # log.message.format.version: 3.3
 
     ## LDAP Users
