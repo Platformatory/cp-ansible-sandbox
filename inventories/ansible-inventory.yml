@@ -77,7 +77,7 @@ all:
       initLimit: 6
       syncLimit: 4
       ssl.quorum.hostnameVerification: false
-      # ssl.hostnameVerification: false
+      ssl.hostnameVerification: false
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
