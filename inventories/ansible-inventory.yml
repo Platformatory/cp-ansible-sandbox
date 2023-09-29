@@ -6,7 +6,7 @@ all:
     ansible_become: true
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
-    # ssl_enabled: true
+    ssl_enabled: true
     # ssl_mutual_auth_enabled: true
 
     # ssl_custom_certs: true
@@ -14,7 +14,7 @@ all:
     #ssl_signed_cert_filepath: "/var/ssl/private/kafka_broker.crt"
     # ssl_key_filepath: "/var/ssl/private/public.pem"
     # ssl_key_password: ""
-    # regenerate_keystore_and_truststore: true
+    regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
@@ -33,8 +33,8 @@ all:
 #        sasl_protocol: oauthbearer
       client_listener:
         name: CLIENT
-        port: 9095
-        ssl_enabled: false
+        port: 9093
+        ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
