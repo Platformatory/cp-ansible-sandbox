@@ -33,7 +33,7 @@ all:
 #        sasl_protocol: oauthbearer
       client_listener:
         name: CLIENT
-        port: 9093
+        port: 9095
         ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
@@ -42,9 +42,9 @@ all:
     rbac_enabled: true
     
     # deployment_strategy: rolling
-    # kafka_broker_custom_properties:
-    #   inter.broker.protocol.version: 3.3
-      # log.message.format.version: 3.3
+    #kafka_broker_custom_properties:
+    #  inter.broker.protocol.version: 3.5
+    #  log.message.format.version: 3.5
 
     ## LDAP Users
     mds_super_user: mds
@@ -77,7 +77,7 @@ all:
       initLimit: 6
       syncLimit: 4
       ssl.quorum.hostnameVerification: false
-      ssl.hostnameVerification: false
+      # ssl.hostnameVerification: false
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
@@ -134,7 +134,7 @@ kafka_broker:
       listener.name.client.plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required;
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
-      # ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+      ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 #      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
@@ -148,7 +148,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      # ldap.search.mode: USERS
+      ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -157,14 +157,14 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      ldap.search.mode: GROUPS
-      #Required for group-based search
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.member.attribute: memberuid
-      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+      #ldap.search.mode: GROUPS
+      # Required for group-based search
+      #ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      #ldap.group.object.class: posixGroup
+      #ldap.group.name.attribute: cn
+      #ldap.group.member.attribute: memberuid
+      #ldap.group.search.scope: 2
+      # ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
   hosts:
     kafka1:
     kafka2:
