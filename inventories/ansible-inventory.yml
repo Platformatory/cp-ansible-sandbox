@@ -14,26 +14,26 @@ all:
     #ssl_signed_cert_filepath: "/var/ssl/private/kafka_broker.crt"
     # ssl_key_filepath: "/var/ssl/private/public.pem"
     # ssl_key_password: ""
-    regenerate_keystore_and_truststore: true
+    # regenerate_keystore_and_truststore: true
 
     kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      broker:
-        name: BROKER
-        port: 9091
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: none
-      internal:
-        name: INTERNAL
-        port: 9092
-        ssl_enabled: true
-        ssl_mutual_auth_enabled: true
-        sasl_protocol: oauthbearer
+#      broker:
+#        name: BROKER
+#        port: 9093
+#        ssl_enabled: true
+#        ssl_mutual_auth_enabled: true
+#        sasl_protocol: none
+#      internal:
+#        name: INTERNAL
+#        port: 9094
+#        ssl_enabled: true
+#        ssl_mutual_auth_enabled: true
+#        sasl_protocol: oauthbearer
       client_listener:
         name: CLIENT
-        port: 9093
+        port: 9095
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
@@ -148,7 +148,7 @@ kafka_broker:
       ldap.java.naming.security.principal: cn=admin,dc=confluentdemo,dc=io
       ldap.java.naming.security.credentials: admin
       ldap.java.naming.security.authentication: simple
-      # ldap.search.mode: USERS
+      ldap.search.mode: USERS
       # adjust to meet the directory settings
       ldap.user.search.base: ou=users,dc=confluentdemo,dc=io
       ldap.user.object.class: inetOrgPerson
@@ -157,14 +157,14 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      ldap.search.mode: GROUPS
-      Required for group-based search
-      ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      ldap.group.object.class: posixGroup
-      ldap.group.name.attribute: cn
-      ldap.group.member.attribute: memberuid
-      ldap.group.search.scope: 2
-      ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
+      #ldap.search.mode: GROUPS
+      # Required for group-based search
+      #ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      #ldap.group.object.class: posixGroup
+      #ldap.group.name.attribute: cn
+      #ldap.group.member.attribute: memberuid
+      #ldap.group.search.scope: 2
+      # ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
   hosts:
     kafka1:
     kafka2:
