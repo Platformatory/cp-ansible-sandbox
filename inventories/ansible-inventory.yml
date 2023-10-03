@@ -51,8 +51,8 @@ all:
     mds_super_user_password: mds
     kafka_broker_ldap_user: mds
     kafka_broker_ldap_password: mds
-    #schema_registry_ldap_user: schemaregistryUser
-    #schema_registry_ldap_password: schemaregistryUser
+    schema_registry_ldap_user: schemaregistryUser
+    schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
     # kafka_connect_ldap_password: connectAdmin
     # ksql_ldap_user: <Your KSQL username in LDAP>
@@ -81,7 +81,7 @@ all:
     kafka_broker_custom_properties:
       num.io.threads: 15
       offsets.topic.num.partitions: 1
-      offsets.topic.replication.factor: 1
+      offsets.topic.replication.factor: 3
       confluent.balancer.enable: true
       # ssl.endpoint.identification.algorithm: 
       # zookeeper.ssl.endpoint.identification.algorithm: 
