@@ -16,25 +16,25 @@ all:
     # ssl_key_password: ""
     regenerate_keystore_and_truststore: true
 
-    # kafka_broker_schema_validation_enabled: true
+    kafka_broker_schema_validation_enabled: true
 
     kafka_broker_custom_listeners:
-      # broker:
-      #   name: BROKER
-      #   port: 9093
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: none
-      # internal:
-      #   name: INTERNAL
-      #   port: 9094
-      #   ssl_enabled: true
-      #   ssl_mutual_auth_enabled: true
-      #   sasl_protocol: oauthbearer
+#      broker:
+#        name: BROKER
+#        port: 9093
+#        ssl_enabled: true
+#        ssl_mutual_auth_enabled: true
+#        sasl_protocol: none
+#      internal:
+#        name: INTERNAL
+#        port: 9094
+#        ssl_enabled: true
+#        ssl_mutual_auth_enabled: true
+#        sasl_protocol: oauthbearer
       client_listener:
         name: CLIENT
         port: 9095
-        ssl_enabled: false
+        ssl_enabled: true
         ssl_mutual_auth_enabled: false
         sasl_protocol: plain
 
@@ -43,16 +43,16 @@ all:
     
     deployment_strategy: rolling
     kafka_broker_custom_properties:
-      inter.broker.protocol.version: 3.5
-      log.message.format.version: 3.5
+     inter.broker.protocol.version: 3.5
+     log.message.format.version: 3.5
 
     ## LDAP Users
     mds_super_user: mds
     mds_super_user_password: mds
     kafka_broker_ldap_user: mds
     kafka_broker_ldap_password: mds
-    schema_registry_ldap_user: schemaregistryUser
-    schema_registry_ldap_password: schemaregistryUser
+    #schema_registry_ldap_user: schemaregistryUser
+    #schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
     # kafka_connect_ldap_password: connectAdmin
     # ksql_ldap_user: <Your KSQL username in LDAP>
@@ -77,7 +77,6 @@ all:
       initLimit: 6
       syncLimit: 4
       ssl.quorum.hostnameVerification: false
-      clientPort: 2181
       # ssl.hostnameVerification: false
     kafka_broker_custom_properties:
       num.io.threads: 15
@@ -136,9 +135,9 @@ kafka_broker:
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
 
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
-      # listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+#      listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+#      listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
+#      listener.name.internal.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
 
       # ldap.ssl.truststore.location: /var/path/kafka_broker.truststore.jks
       # ldap.ssl.truststore.password: my-truststore-password
@@ -158,13 +157,13 @@ kafka_broker:
       ldap.user.search.filter: (objectClass=inetOrgPerson)
       ldap.user.search.scope: 2
       ldap.search.page.size: 1000
-      # ldap.search.mode: GROUPS
-      # # Required for group-based search
-      # ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
-      # ldap.group.object.class: posixGroup
-      # ldap.group.name.attribute: cn
-      # ldap.group.member.attribute: memberuid
-      # ldap.group.search.scope: 2
+      #ldap.search.mode: GROUPS
+      # Required for group-based search
+      #ldap.group.search.base: ou=users,dc=confluentdemo,dc=io
+      #ldap.group.object.class: posixGroup
+      #ldap.group.name.attribute: cn
+      #ldap.group.member.attribute: memberuid
+      #ldap.group.search.scope: 2
       # ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
   hosts:
     kafka1:
