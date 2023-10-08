@@ -229,3 +229,13 @@ services:
      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command: "--config.file=/etc/prometheus/prometheus.yml"     
     container_name: prometheus
+
+  alertmanager:
+    image: "prom/alertmanager"
+    container_name: alertmanager
+    ports:
+      - "9095:9095"
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    command: "--config.file=/etc/alertmanager/alertmanager.yml"
+  
