@@ -1,0 +1,16 @@
+global:
+ resolve_timeout: 1m
+
+route:
+ receiver: 'email-notifications'
+
+receivers:
+- name: 'email-notifications'
+  email_configs:
+  - to: akkishiva@platformatory.com
+    from: akkishiva@platformatory.com
+    smarthost: smtp.gmail.com:587
+    auth_username: akkishiva@platformatory.com
+    auth_identity: akkishiva@platformatory.com
+    auth_password: Omganesh@066
+    send_resolved: true
