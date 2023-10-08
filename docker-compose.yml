@@ -236,6 +236,6 @@ services:
     ports:
       - "9095:9095"
     volumes:
-      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     command: "--config.file=/etc/alertmanager/alertmanager.yml"
   
