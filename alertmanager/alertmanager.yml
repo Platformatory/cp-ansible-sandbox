@@ -1,18 +1,13 @@
 global:
-  slack_api_url: 'https://hooks.slack.com/services/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'
+  slack_api_url: 'https://hooks.slack.com/services/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'
 
 route:
   receiver: 'slack-notifications'
-  group_by: [alertname, datacenter, app]
+  group_by: ['instance', 'severity']
 
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#promethuesalerting'        
+  - api_url: "https://hooks.slack.com/services/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"
+    channel: '#promethuesalerting'        
 
-inhibit_rules:
-  - source_match:
-      severity: 'critical'
-    target_match:
-      severity: 'warning'
-    equal: ['alertname', 'instance', 'job']
