@@ -8,7 +8,7 @@ receivers:
   - name: 'slack-email-notifications'
     slack_configs:
       - send_resolved: true
-        api_url: 'https://app.slack.com/client/T020SN9FAUV/'
+        api_url: 'https://hooks.slack.com/services/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'
     email_configs:
       - to: 'akkishivaprakash@gmail.com'
         from: 'akkishiva@platformatory.com'
