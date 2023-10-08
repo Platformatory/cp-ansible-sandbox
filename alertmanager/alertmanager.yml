@@ -1,17 +1,14 @@
 global:
-  resolve_timeout: 5m
+  slack_api_url: 'https://hooks.slack.com/services/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'
 
 route:
   receiver: 'slack-notifications'
+  group_by: [alertname, datacenter, app]
 
 receivers:
-  - name: 'slack-notifications'
-    slack_configs:
-      - send_resolved: true
-        api_url: 'https://hooks.slack.com/services/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'
-        channel: '#promethuesalerting'  # Specify the Slack channel where you want to send notifications
-        username: 'alertmanager'
-        color: '#FF0000'  # You can customize the color of the Slack message
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#promethuesalerting'        
 
 inhibit_rules:
   - source_match:
