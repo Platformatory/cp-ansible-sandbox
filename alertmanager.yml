@@ -9,7 +9,7 @@ receivers:
     slack_configs:
       - send_resolved: true
         api_url: 'https://hooks.slack.com/services/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'
-        channel: '#general'  # Specify the Slack channel where you want to send notifications
+        channel: '#promethuesalerting'  # Specify the Slack channel where you want to send notifications
         username: 'alertmanager'
         color: '#FF0000'  # You can customize the color of the Slack message
 
