@@ -1,0 +1,26 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'slack-email-notifications'
+
+receivers:
+  - name: 'slack-email-notifications'
+    slack_configs:
+      - send_resolved: true
+        api_url: 'https://app.slack.com/client/T020SN9FAUV/'
+    email_configs:
+      - to: 'akkishivaprakash@gmail.com'
+        from: 'akkishiva@platformatory.com'
+        smarthost: 'smtp.example.com:587'
+        auth_username: 'akkishiva@platformatory.com'
+        auth_identity: 'akkishiva@platformatory.com'
+        auth_password: 'Omganesh@066'
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance', 'job']
+
