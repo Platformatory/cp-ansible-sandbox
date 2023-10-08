@@ -1,0 +1,47 @@
+groups:
+- name: example
+  rules:
+  - alert: BrokerDown
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Broker is down"
+      description: "The Kafka broker is not reachable."
+
+  - alert: ZookeeperDown
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Zookeeper is down"
+      description: "Zookeeper is not reachable."
+
+  - alert: UnderReplicatedPartition
+    expr: kafka_controller_partition_under_replicated > 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Under-replicated Partition(s)"
+      description: "There are under-replicated partition(s) in the Kafka cluster."
+
+  - alert: OfflinePartition
+    expr: kafka_controller_partition_offline > 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Offline Partition(s)"
+      description: "There are offline partition(s) in the Kafka cluster."
+
+  - alert: HighCPULoad
+    expr: node_cpu_seconds_total / node_cpu_seconds_total{mode="idle"} * 100 > 80
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU Load"
+      description: "The CPU usage is above 80% for more than 5 minutes."
