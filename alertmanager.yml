@@ -2,20 +2,16 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: 'slack-email-notifications'
+  receiver: 'slack-notifications'
 
 receivers:
-  - name: 'slack-email-notifications'
+  - name: 'slack-notifications'
     slack_configs:
       - send_resolved: true
         api_url: 'https://hooks.slack.com/services/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'
-    email_configs:
-      - to: 'akkishivaprakash@gmail.com'
-        from: 'akkishiva@platformatory.com'
-        smarthost: 'smtp.example.com:587'
-        auth_username: 'akkishiva@platformatory.com'
-        auth_identity: 'akkishiva@platformatory.com'
-        auth_password: 'Omganesh@066'
+        channel: '#general'  # Specify the Slack channel where you want to send notifications
+        username: 'alertmanager'
+        color: '#FF0000'  # You can customize the color of the Slack message
 
 inhibit_rules:
   - source_match:
@@ -23,4 +19,3 @@ inhibit_rules:
     target_match:
       severity: 'warning'
     equal: ['alertname', 'instance', 'job']
-
