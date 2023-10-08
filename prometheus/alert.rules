@@ -20,7 +20,7 @@ groups:
       description: "Zookeeper is not reachable."
 
   - alert: UnderReplicatedPartition
-    expr: kafka_controller_partition_under_replicated > 0
+    expr: kafka_cluster_partition_underreplicated > 0
     for: 1m
     labels:
       severity: warning
@@ -29,7 +29,7 @@ groups:
       description: "There are under-replicated partition(s) in the Kafka cluster."
 
   - alert: OfflinePartition
-    expr: kafka_controller_partition_offline > 0
+    expr: kafka_controller_kafkacontroller_offlinepartitionscount > 0
     for: 1m
     labels:
       severity: warning
@@ -38,7 +38,7 @@ groups:
       description: "There are offline partition(s) in the Kafka cluster."
 
   - alert: HighCPULoad
-    expr: node_cpu_seconds_total / node_cpu_seconds_total{mode="idle"} * 100 > 80
+    expr: process_cpu_seconds_total > 80
     for: 5m
     labels:
       severity: warning
