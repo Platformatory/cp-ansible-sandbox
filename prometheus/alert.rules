@@ -1,18 +1,18 @@
 groups:
 - name: example
   rules:
-  - alert: BrokerDown
+  - alert: kafka-broker
     expr: up == 0
-    for: 1m
+    for: 30s
     labels:
       severity: critical
     annotations:
       summary: "Broker is down"
       description: "The Kafka broker is not reachable."
 
-  - alert: ZookeeperDown
+  - alert: zookeeper
     expr: up == 0
-    for: 1m
+    for: 30s
     labels:
       severity: critical
     annotations:
