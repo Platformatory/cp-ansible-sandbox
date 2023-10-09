@@ -239,6 +239,6 @@ services:
       - "9093:9093"
     volumes:
       - ./alertmanager/:/etc/alertmanager/
-    command: "--config.file=/etc/alertmanager/email.yml"
+    command: "--config.file=/etc/alertmanager/alermanager.yml"
           
   
