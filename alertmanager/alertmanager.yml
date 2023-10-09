@@ -10,7 +10,7 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - api_url: "https://hooks.slack.com/services/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"
+  - api_url: "https://hooks.slack.com/services/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"
     channel: '#promethuesalerting'
     send_resolved: true
 
