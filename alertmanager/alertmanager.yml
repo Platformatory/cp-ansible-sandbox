@@ -2,7 +2,7 @@ template_files: {}
 alertmanager_config: |
   global:
     resolve_timeout: 1m
-    slack_api_url: 'https://hooks.slack.com/services/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'
+    slack_api_url: 'https://hooks.slack.com/services/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'
 
   route:
     receiver: 'slack-notifications'
