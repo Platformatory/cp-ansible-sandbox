@@ -1,16 +1,17 @@
-global:
- resolve_timeout: 1m
-
 route:
- receiver: 'email-notifications'
+  receiver: 'Mail Alert'
+  # group_by: [ alertname ]
+  repeat_interval: 30s
+  group_wait: 15s
+  group_interval: 15s
 
 receivers:
-- name: 'email-notifications'
-  email_configs:
-  - to: akkishiva@platformatory.com
-    from: akkishiva@platformatory.com
-    smarthost: smtp.gmail.com:587
-    auth_username: akkishiva@platformatory.com
-    auth_identity: akkishiva@platformatory.com
-    auth_password: Omganesh@066
-    send_resolved: true
+  - name: 'Mail Alert'
+    email_configs:
+      - smarthost: 'smtp.gmail.com:587'
+        auth_username: 'akkishiva@platformatory.com'
+        auth_password: "Omganesh@066"
+        from: 'akkishiva@platformatory.com'
+        to: 'akkishivaprakash@gmail.com'
+        headers:
+          subject: 'Prometheus Mail Alerts'
