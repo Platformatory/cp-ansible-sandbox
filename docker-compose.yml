@@ -192,19 +192,19 @@ services:
     environment:
       - DEBIAN_FRONTEND=non-interactive
 
-  # kafka-lag-exporter:
-  #   image: seglo/kafka-lag-exporter:0.8.2
-  #   container_name: kafka-lag-exporter
-  #   ports:
-  #     - "8000:8000"
-  #   environment:
-  #     KAFKA_LAG_EXPORTER_LOG_LEVEL: INFO
-  #     KAFKA_LAG_EXPORTER_KAFKA_LOG_LEVEL: INFO
-  #     ROOT_LOG_LEVEL: INFO
-  #   volumes:
-  #     - ./kafka-lag-exporter:/opt/docker/conf
-  #     - ./certs:/opt/kafka/certs
-  #   command: "/opt/docker/bin/kafka-lag-exporter -Dconfig.file=/opt/docker/conf/application.conf -Dlogback.configurationFile=/opt/docker/conf/logback.xml"
+  kafka-lag-exporter:
+    image: seglo/kafka-lag-exporter:0.8.2
+    container_name: kafka-lag-exporter
+    ports:
+      - "8000:8000"
+    environment:
+      KAFKA_LAG_EXPORTER_LOG_LEVEL: INFO
+      KAFKA_LAG_EXPORTER_KAFKA_LOG_LEVEL: INFO
+      ROOT_LOG_LEVEL: INFO
+    volumes:
+      - ./kafka-lag-exporter:/opt/docker/conf
+      - ./certs:/opt/kafka/certs
+    command: "/opt/docker/bin/kafka-lag-exporter -Dconfig.file=/opt/docker/conf/application.conf -Dlogback.configurationFile=/opt/docker/conf/logback.xml"
   
   grafana:
     image: "grafana/grafana"
