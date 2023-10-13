@@ -166,9 +166,9 @@ kafka_broker:
       ldap.group.search.scope: 2
       ldap.group.member.attribute.pattern: CN=(.*),OU=Users,DC=confluentdemo,DC=io
   hosts:
-    kafka1:
+    # kafka1:
     kafka2:
-    kafka3:
+    # kafka3
 
 #schema_registry:
 #  hosts:
