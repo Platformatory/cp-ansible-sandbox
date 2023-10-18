@@ -8,7 +8,9 @@ all:
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
+    zookeeper_ssl_enabled: false
 
+    deployment_strategy: rolling
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certs/ca.crt"
     # ssl_signed_cert_filepath: "certs/kafka.crt"
