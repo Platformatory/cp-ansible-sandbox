@@ -163,9 +163,6 @@ kafka_broker:
     kafka2:
     kafka3:
 
-schema_registry:
-  hosts:
-    schema-registry:
 
 control_center:
   hosts:
