@@ -8,9 +8,11 @@ all:
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
-    zookeeper_ssl_enabled: false
+    #zookeeper_ssl_enabled: false
 
     deployment_strategy: rolling
+    kafka_broker_custom_properties:
+      inter.broker.protocol.version: 3.3
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certs/ca.crt"
     # ssl_signed_cert_filepath: "certs/kafka.crt"
