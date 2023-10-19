@@ -11,7 +11,7 @@ all:
     #zookeeper_ssl_enabled: false
 
     deployment_strategy: rolling
-    kafka_broker_custom_properties:
+    #kafka_broker_custom_properties:
       inter.broker.protocol.version: 3.4
     # ssl_custom_certs: true
     # ssl_ca_cert_filepath: "certs/ca.crt"
@@ -134,7 +134,7 @@ kafka_broker:
     kafka_broker_custom_properties:
       listener.name.client.plain.sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required;
       listener.name.client.plain.sasl.server.callback.handler.class: io.confluent.security.auth.provider.ldap.LdapAuthenticateCallbackHandler
-
+      inter.broker.protocol.version: 3.4
       ssl.principal.mapping.rules: "RULE:.*CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.client.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
       # listener.name.broker.ssl.principal.mapping.rules: "RULE:CN=([a-zA-Z0-9_@]*),.*$/$1/L, DEFAULT"
