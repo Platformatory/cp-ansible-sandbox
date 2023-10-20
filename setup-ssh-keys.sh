@@ -4,7 +4,7 @@ docker compose exec zookeeper1 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa
 docker compose exec zookeeper2 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
 docker compose exec zookeeper3 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
 docker compose exec kafka1 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
-dockercompose exec kafka2 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
+docker compose exec kafka2 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
 docker ompose exec kafka3 bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
 docker compose exec schema-registry bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
 docker compose exec control-center bash -c "cat /usr/share/cp-ansible-sandbox/id_rsa.pub >> /root/.ssh/authorized_keys"
