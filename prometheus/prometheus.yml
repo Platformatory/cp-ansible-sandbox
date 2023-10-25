@@ -50,6 +50,20 @@ scrape_configs:
         regex: '([^:]+)(:[0-9]+)?'
         replacement: '${1}'
 
+  - job_name: "zookeeperC2"
+    static_configs:
+      - targets:
+          - "142.93.213.75:8079"
+          # - "142.93.213.75:8079"
+          # - "142.93.213.75:8079"
+        labels:
+          env: "dev"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'
+
 
   - job_name: "kafka-broker"
     static_configs:
