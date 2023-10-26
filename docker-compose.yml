@@ -18,7 +18,7 @@ services:
   #     - ANSIBLE_SSH_PIPELINING=True
   #     - ANSIBLE_INVENTORY=/ansible/inventories/ansible-inventory.yml
 
-  openldapC:
+  openldapc:
     image: osixia/openldap:1.3.0
     hostname: openldap
     container_name: openldap
@@ -32,11 +32,11 @@ services:
         - ./ldap_users:/container/service/slapd/assets/config/bootstrap/ldif/custom
     command: "--copy-service --loglevel debug"
 
-  zookeeperC1:
+  zookeeperc1:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: zookeeperC1
+    hostname: zookeeperc1
     privileged: true
     cap_add:
       - ALL
@@ -91,11 +91,11 @@ services:
   #   environment:
   #     - DEBIAN_FRONTEND=non-interactive
 
-  kafkaC1:
+  kafkac1:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: kafkaC1
+    hostname: kafkac1
     privileged: true
     cap_add:
       - ALL
@@ -171,11 +171,11 @@ services:
   #   environment:
   #     - DEBIAN_FRONTEND=non-interactive
 
-  control-centerC:
+  control-centerc:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: control-centerC
+    hostname: control-centerc
     privileged: true
     cap_add:
       - ALL
@@ -192,9 +192,9 @@ services:
     environment:
       - DEBIAN_FRONTEND=non-interactive
 
-  kafka-lag-exporterC:
+  kafka-lag-exporterc:
     image: seglo/kafka-lag-exporter:0.8.2
-    container_name: kafka-lag-exporterC
+    container_name: kafka-lag-exporterc
     ports:
       - "8001:8000"
     environment:
