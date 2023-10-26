@@ -41,7 +41,7 @@ services:
     cap_add:
       - ALL
     ports:
-      - "2223:22"
+      - "3223:22"
     volumes:
       - ./share:/usr/share/cp-ansible-sandbox
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -100,7 +100,7 @@ services:
     cap_add:
       - ALL
     ports:
-      - "2226:22"
+      - "3226:22"
     volumes:
       - ./share:/usr/share/cp-ansible-sandbox
       - ./certs:/var/ssl/private
@@ -180,7 +180,7 @@ services:
     cap_add:
       - ALL
     ports:
-      - "2229:22"
+      - "3229:22"
       - "9022:9021"
     volumes:
       - ./share:/usr/share/cp-ansible-sandbox
