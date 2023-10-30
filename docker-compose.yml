@@ -5,7 +5,7 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
-    hostname: ansible-control
+    hostname: ansible-controlC
     volumes:
       - ./cp-ansible:/ansible/ansible_collections/confluent/platform:rw
       - ./inventories:/ansible/inventories
