@@ -32,11 +32,11 @@ services:
         - ./ldap_users:/container/service/slapd/assets/config/bootstrap/ldif/custom
     command: "--copy-service --loglevel debug"
 
-  zookeeperc1:
+  zookeeperC1:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: zookeeperc1
+    hostname: zookeeperC1
     privileged: true
     cap_add:
       - ALL
@@ -52,25 +52,25 @@ services:
     environment:
       - DEBIAN_FRONTEND=non-interactive
   
-  # zookeeper2:
-  #   build:
-  #     context: ./  # This is the directory where your Dockerfile-inventory-node resides
-  #     dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-  #   hostname: zookeeper2
-  #   privileged: true
-  #   cap_add:
-  #     - ALL
-  #   ports:
-  #     - "2223:22"
-  #   volumes:
-  #     - ./share:/usr/share/cp-ansible-sandbox
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   tmpfs:
-  #     - /run/lock
-  #     - /run
-  #     - /tmp
-  #   environment:
-  #     - DEBIAN_FRONTEND=non-interactive      
+  zookeeperC2:
+    build:
+      context: ./  # This is the directory where your Dockerfile-inventory-node resides
+      dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
+    hostname: zookeeperC2
+    privileged: true
+    cap_add:
+      - ALL
+    ports:
+      - "3223:22"
+    volumes:
+      - ./share:/usr/share/cp-ansible-sandbox
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run/lock
+      - /run
+      - /tmp
+    environment:
+      - DEBIAN_FRONTEND=non-interactive      
   # zookeeper3:
   #   build:
   #     context: ./  # This is the directory where your Dockerfile-inventory-node resides
@@ -91,11 +91,11 @@ services:
   #   environment:
   #     - DEBIAN_FRONTEND=non-interactive
 
-  kafkac1:
+  kafkaC1:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: kafkac1
+    hostname: kafkaC1
     privileged: true
     cap_add:
       - ALL
@@ -112,25 +112,25 @@ services:
     environment:
       - DEBIAN_FRONTEND=non-interactive
 
-  # kafka2:
-  #   build:
-  #     context: ./  # This is the directory where your Dockerfile-inventory-node resides
-  #     dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-  #   hostname: kafka2
-  #   privileged: true
-  #   cap_add:
-  #     - ALL
-  #   ports:
-  #     - "2226:22"
-  #   volumes:
-  #     - ./share:/usr/share/cp-ansible-sandbox
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   tmpfs:
-  #     - /run/lock
-  #     - /run
-  #     - /tmp
-  #   environment:
-  #     - DEBIAN_FRONTEND=non-interactive      
+  kafkaC2:
+    build:
+      context: ./  # This is the directory where your Dockerfile-inventory-node resides
+      dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
+    hostname: kafkaC2
+    privileged: true
+    cap_add:
+      - ALL
+    ports:
+      - "2226:22"
+    volumes:
+      - ./share:/usr/share/cp-ansible-sandbox
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run/lock
+      - /run
+      - /tmp
+    environment:
+      - DEBIAN_FRONTEND=non-interactive      
   # kafka3:
   #   build:
   #     context: ./  # This is the directory where your Dockerfile-inventory-node resides
@@ -171,11 +171,11 @@ services:
   #   environment:
   #     - DEBIAN_FRONTEND=non-interactive
 
-  control-centerc:
+  control-centerC:
     build:
       context: ./  # This is the directory where your Dockerfile-inventory-node resides
       dockerfile: Dockerfile-inventory-node  # This is the name of your Dockerfile
-    hostname: control-centerc
+    hostname: control-centerC
     privileged: true
     cap_add:
       - ALL
@@ -206,26 +206,26 @@ services:
       - ./certs:/opt/kafka/certs
     command: "/opt/docker/bin/kafka-lag-exporter -Dconfig.file=/opt/docker/conf/application.conf -Dlogback.configurationFile=/opt/docker/conf/logback.xml"
   
-  # grafana:
-  #   image: "grafana/grafana"
-  #   ports:
-  #    - "3000:3000"
-  #   environment:
-  #     GF_PATHS_DATA: /var/lib/grafana
-  #     GF_SECURITY_ADMIN_PASSWORD: kafka
-  #   container_name: grafana
-  #   depends_on:
-  #    - prometheus
-  #   volumes:
-  #     - ./grafana:/etc/grafana/provisioning
+  grafana:
+    image: "grafana/grafana"
+    ports:
+     - "3000:3000"
+    environment:
+      GF_PATHS_DATA: /var/lib/grafana
+      GF_SECURITY_ADMIN_PASSWORD: kafka
+    container_name: grafana
+    depends_on:
+     - prometheus
+    volumes:
+      - ./grafana:/etc/grafana/provisioning
 
-  # prometheus:
-  #   image: "prom/prometheus"
-  #   ports:
-  #    - "9090:9090"
-  #   depends_on:
-  #    - kafka-lag-exporter
-  #   volumes:
-  #    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-  #   command: "--config.file=/etc/prometheus/prometheus.yml"     
-  #   container_name: prometheus
+  prometheus:
+    image: "prom/prometheus"
+    ports:
+     - "9090:9090"
+    depends_on:
+     - kafka-lag-exporter
+    volumes:
+     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml"     
+    container_name: prometheus
