@@ -53,7 +53,7 @@ scrape_configs:
   - job_name: "zookeeperC2"
     static_configs:
       - targets:
-          - "142.93.213.75:8079"
+          - "zookeeperC1:8079"
           # - "142.93.213.75:8079"
           # - "142.93.213.75:8079"
         labels:
@@ -79,6 +79,19 @@ scrape_configs:
         regex: '([^:]+)(:[0-9]+)?'
         replacement: '${1}'
 
+  - job_name: "kafka-brokerC2"
+    static_configs:
+      - targets:
+          - "kafkaC1:8080"
+          # - "kafka2:8080"
+          # - "kafka3:8080"
+        labels:
+          env: "dev"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: '([^:]+)(:[0-9]+)?'
+        replacement: '${1}'
 
   - job_name: "schema-registry"
     static_configs:
