@@ -1,6 +1,8 @@
 # cp-ansible-sandbox
 
-docker-compose environment to run cp-ansible in a docker environment with systemd and ssh for the inventory nodes
+docker-compose environment to run cp-ansible in a docker environment with systemd and ssh for the inventory nodes.
+
+> Requires docker version 24.0.5 or lower to work
 
 ## Getting Started
 
