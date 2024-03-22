@@ -4,7 +4,7 @@ all:
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
-    ansible_ssh_private_key_file: /var/jenkins_home/.ssh/id_rsa
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
 
     ssl_enabled: true
     ssl_mutual_auth_enabled: true
@@ -51,8 +51,8 @@ all:
     mds_super_user_password: mds
     kafka_broker_ldap_user: mds
     kafka_broker_ldap_password: mds
-    #schema_registry_ldap_user: schemaregistryUser
-    #schema_registry_ldap_password: schemaregistryUser
+    schema_registry_ldap_user: schemaregistryUser
+    schema_registry_ldap_password: schemaregistryUser
     # kafka_connect_ldap_user: connectAdmin
     # kafka_connect_ldap_password: connectAdmin
     # ksql_ldap_user: <Your KSQL username in LDAP>
@@ -170,9 +170,9 @@ kafka_broker:
     kafka2:
     kafka3:
 
-#schema_registry:
-#  hosts:
-#    schema-registry:
+schema_registry:
+ hosts:
+   schema-registry:
 
 control_center:
   hosts:
